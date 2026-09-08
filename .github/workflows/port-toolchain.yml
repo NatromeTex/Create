@@ -1,0 +1,31 @@
+name: Port toolchain
+
+on:
+  push:
+    branches: [port/mc26.1.2]
+    paths:
+      - porting/toolchain/**
+      - .github/workflows/port-toolchain.yml
+  pull_request:
+    paths:
+      - porting/toolchain/**
+      - .github/workflows/port-toolchain.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile-target-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5.1'
+      - name: Verify Minecraft 26.1.2 and Fabric classpath
+        run: gradle -p porting/toolchain verifyTarget

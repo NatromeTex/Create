@@ -157,7 +157,7 @@ loom {
             name("Headlesss GameTests")
             ideConfigGenerated(false) // this run is for CI
             vmArg("-Dfabric-api.gametest")
-            vmArg("-Dfabric-api.gametest.report-file=${layout.buildDirectory}/junit.xml")
+            vmArg("-Dfabric-api.gametest.report-file=${layout.buildDirectory.file("junit.xml").get().asFile.absolutePath}")
             runDir("run/gametest")
         }
 

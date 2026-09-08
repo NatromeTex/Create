@@ -3,6 +3,7 @@ package com.simibubi.create.infrastructure.gametest.tests;
 import static com.simibubi.create.infrastructure.gametest.CreateGameTestHelper.FIFTEEN_SECONDS;
 
 import com.simibubi.create.AllBlockEntityTypes;
+import com.simibubi.create.content.contraptions.actors.plough.PloughMovementBehaviour;
 import com.simibubi.create.content.redstone.thresholdSwitch.ThresholdSwitchBlockEntity;
 import com.simibubi.create.content.schematics.SchematicExport;
 import com.simibubi.create.content.schematics.SchematicItem;
@@ -26,9 +27,39 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RedstoneLampBlock;
+import net.minecraft.world.level.block.SnowLayerBlock;
 
 @GameTestGroup(path = "misc")
 public class TestMisc {
+	@GameTest(template = "plough_breaking_rules")
+	public static void ploughBreakingRules(CreateGameTestHelper helper) {
+		BlockPos relativePos = new BlockPos(1, 1, 1);
+		BlockPos pos = helper.absolutePos(relativePos);
+		ServerLevel level = helper.getLevel();
+		PloughMovementBehaviour plough = new PloughMovementBehaviour();
+		helper.setBlock(relativePos.below(), Blocks.STONE);
+
+		// Thick snow has collision; the whitelist must still allow it to be cleared.
+		for (int layers = 1; layers <= 8; layers++) {
+			helper.assertTrue(plough.canBreak(level, pos,
+				Blocks.SNOW.defaultBlockState().setValue(SnowLayerBlock.LAYERS, layers)),
+				"Plough should clear snow with " + layers + " layers");
+		}
+		helper.assertFalse(plough.canBreak(level, pos, Blocks.NETHER_PORTAL.defaultBlockState()),
+			"Plough must preserve nether portals");
+		helper.assertFalse(plough.canBreak(level, pos, Blocks.END_PORTAL.defaultBlockState()),
+			"Plough must preserve end portals through the portals tag");
+		helper.assertFalse(plough.canBreak(level, pos, Blocks.STONE.defaultBlockState()),
+			"Plough must preserve ordinary solid blocks");
+		helper.assertFalse(plough.canBreak(level, pos, Blocks.WATER.defaultBlockState()),
+			"Plough must preserve fluids");
+
+		helper.setBlock(relativePos.below(), Blocks.FARMLAND);
+		helper.assertFalse(plough.canBreak(level, pos, Blocks.SNOW.defaultBlockState()),
+			"Whitelist must not override farmland protection");
+		helper.succeed();
+	}
+
 	@GameTest(template = "schematicannon", timeoutTicks = FIFTEEN_SECONDS)
 	public static void schematicannon(CreateGameTestHelper helper) {
 		// load the structure

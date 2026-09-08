@@ -6,7 +6,8 @@
     "repository": "https://github.com/Fabricators-of-Create/Create",
     "branch": "mc1.20.1/fabric/dev",
     "commit": "4c3fe779d135d592548e4cb09da04d742d2637b7",
-    "releaseBuild1744Provenance": "not-yet-verified"
+    "releaseBuild1744Provenance": "verified-ci-head-sha",
+    "releaseBuild1744Run": "https://github.com/Fabricators-of-Create/Create/actions/runs/19868316996"
   },
   "featureReference": {
     "repository": "https://github.com/Creators-of-Create/Create",
