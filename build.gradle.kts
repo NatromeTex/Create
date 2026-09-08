@@ -24,7 +24,8 @@ repositories {
         }
     }
 
-    mavenProviding("https://maven.parchmentmc.org", "org.parchmentmc.data")
+    mavenProviding(providers.gradleProperty("parchmentMavenUrl")
+        .getOrElse("https://maven.parchmentmc.org"), "org.parchmentmc.data")
     mavenProviding("https://maven.createmod.net", "net.createmod", "dev.engine-room")
     mavenProviding("https://mvn.devos.one/snapshots", "com.tterrag.registrate_fabric", "io.github.tropheusj")
     mavenProviding("https://mvn.devos.one/releases", "io.github.fabricators_of_create.Porting-Lib")

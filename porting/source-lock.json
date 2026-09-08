@@ -1,0 +1,48 @@
+{
+  "target": { "minecraft": "26.1.2", "loader": "fabric", "createFeatureVersion": "6.0.10" },
+  "fork": "https://github.com/NatromeTex/Create",
+  "branch": "port/mc26.1.2",
+  "implementationBase": {
+    "repository": "https://github.com/Fabricators-of-Create/Create",
+    "branch": "mc1.20.1/fabric/dev",
+    "commit": "4c3fe779d135d592548e4cb09da04d742d2637b7",
+    "releaseBuild1744Provenance": "not-yet-verified"
+  },
+  "featureReference": {
+    "repository": "https://github.com/Creators-of-Create/Create",
+    "tag": "mc1.21.1-6.0.10",
+    "commit": "ac0c444d9828da3453ae8cc65338e8de063286fb"
+  },
+  "additionalReferences": [
+    {
+      "repository": "https://github.com/Fabricators-of-Create/Create",
+      "branch": "mc1.21.1/fabric/dev",
+      "commit": "7f1f67b6ecbbde512e8d35404f3621a6875ce838",
+      "status": "incomplete-migration-reference"
+    },
+    {
+      "repository": "https://github.com/Engine-Room/Flywheel",
+      "branch": "26.1.2/dev",
+      "commit": "02af394a2ea4e880dc6b14e409f2e96dc0fa7de8",
+      "status": "still-configured-for-minecraft-1.21.1"
+    },
+    {
+      "repository": "https://github.com/Creators-of-Create/Ponder",
+      "branch": "mc26.1/dev",
+      "commit": "bc999d42be7f377a404fa33be6383fc9953c3419",
+      "status": "26.1.2-work-in-progress-config-code-excluded-unpublished-flywheel"
+    },
+    {
+      "repository": "https://github.com/Fabricators-of-Create/Porting-Lib",
+      "branch": "1.21.11",
+      "commit": "10ecb6d01767d93683c84c3e61dbaac227c60a89",
+      "status": "requires-26.1.2-port"
+    },
+    {
+      "repository": "https://github.com/Fabricators-of-Create/Registrate-Refabricated",
+      "branch": "fabric/1.21.1",
+      "commit": "266b26f50dfbf962383993a743cb6e2132d51b72",
+      "status": "requires-26.1.2-port"
+    }
+  ]
+}
