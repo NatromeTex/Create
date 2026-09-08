@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-08",
+  "targetToolchain": {
+    "minecraft": "26.1.2",
+    "java": "25",
+    "gradle": "9.5.1",
+    "loom": "1.17.20",
+    "fabricLoader": "0.19.5",
+    "fabricApi": "0.155.3+26.1.2",
+    "compile": "passed",
+    "gameStartup": "not-tested",
+    "createJar": "not-built"
+  },
+  "reference": {
+    "minecraft": "1.20.1",
+    "gameplayCommit": "4c3fe779d135d592548e4cb09da04d742d2637b7",
+    "build": "passed",
+    "buildOnlyAdjustments": [
+      "Parchment mirror URL",
+      "Windows JUnit report path"
+    ],
+    "gametests": {
+      "tests": 60,
+      "passed": 58,
+      "failures": [
+        {
+          "name": "TestItems.attributeFilters",
+          "message": "item not present: 1 brass_block"
+        },
+        {
+          "name": "TestFluids.thresholdSwitch",
+          "message": "Expected property lit to be false, was true at 1,-57,44 (relative: 1,3,1) (t=401)"
+        }
+      ]
+    }
+  },
+  "adapted": {
+    "minecraft": "1.20.1",
+    "build": "passed",
+    "gametests": {
+      "tests": 61,
+      "passed": 59,
+      "failures": [
+        {
+          "name": "TestItems.attributeFilters",
+          "message": "item not present: 1 brass_block"
+        },
+        {
+          "name": "TestFluids.thresholdSwitch",
+          "message": "Expected property lit to be false, was true at 1,-57,44 (relative: 1,3,1) (t=401)"
+        }
+      ]
+    }
+  },
+  "limitation": "The 26.1.2 check compiles API references only. Create and its dependencies have not yet been ported to 26.1.2."
+}
